@@ -9,6 +9,13 @@ import { LoginModule } from './features/login/login.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KendoModule } from './kendo.module';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { EnquiryDetailsModule } from './features/enquiry-details/enquiry-details.module';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -16,6 +23,7 @@ import { KendoModule } from './kendo.module';
     DashboardComponent,
     DashboardCardsComponent,
     DashboardListComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -24,6 +32,8 @@ import { KendoModule } from './kendo.module';
     DashboardModule,
     KendoModule,
     BrowserAnimationsModule,
+    EnquiryDetailsModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],
