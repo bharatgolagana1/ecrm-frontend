@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputsModule, TextBoxModule } from '@progress/kendo-angular-inputs';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LayoutModule,
     BrowserModule,
     BrowserAnimationsModule,
-
+    InputsModule,
+    TextBoxModule,
     // Add more Kendo UI modules here
   ],
   exports: [
@@ -26,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GridModule,
     DatePickerModule,
     LayoutModule,
+    InputsModule,
+    TextBoxModule,
     // Export all Kendo UI modules here
   ],
 })
