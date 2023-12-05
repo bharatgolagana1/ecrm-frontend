@@ -9,12 +9,8 @@ import { LoginModule } from './features/login/login.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KendoModule } from './kendo.module';
-
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { EnquiryDetailsModule } from './features/enquiry-details/enquiry-details.module';
-import { KendoModule } from './kendo.module';
 
 @NgModule({
   declarations: [
