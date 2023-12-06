@@ -6,7 +6,6 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DatePickerModule } from '@progress/kendo-angular-dateinputs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputsModule, TextBoxModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -18,7 +17,6 @@ import { LabelModule } from '@progress/kendo-angular-label';
     DatePickerModule,
     ReactiveFormsModule,
     LayoutModule,
-    BrowserModule,
     BrowserAnimationsModule,
     InputsModule,
     TextBoxModule,
