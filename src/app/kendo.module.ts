@@ -23,6 +23,7 @@ import { LabelModule } from '@progress/kendo-angular-label';
     TextBoxModule,
     DropDownsModule,
     InputsModule,
+    LabelModule
     // Add more Kendo UI modules here
   ],
   exports:[
