@@ -1,22 +1,16 @@
-
-kendo-dropdownlist{
+.contact-details-kendo-dropdownlist{
     border-radius: var(--Corners, 0.50rem);
     border: 1px solid #5CB5C1;
     background: var(--colors-brand-white, #FFF);
     min-height: 39px;
     }
-
-    .user-main-headertag{
+.contact-details-header-tag{
         max-width: 2.5rem;
   min-height: 0.1875rem;
   flex-shrink: 0;border-radius: 0.1875rem;
   background: #5CB5C1;
     }
-.k-label {
-        margin: -0.1rem;
-        /* padding: 0rem; */
-    }
-.user-contact-details{
+.contact-details-content{
         display: flex;
 min-width: 100%;
 flex-direction: column;
@@ -24,17 +18,16 @@ align-items: flex-start;
 gap: 0.5rem;
 margin-bottom: 1rem;
 }
-
-.user-contactdetails-content{
+.contact-details-container{
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     margin: 1.5rem;
     gap: 1rem;
 }
-
-.user-label{
+.contact-details-label{
     display: flex;
+    margin: -0.1rem;
     color: var(--colors-brand-black, #1C1B1B);
     font-family: Arial;
     font-size: var(--text-size-01);
@@ -43,7 +36,7 @@ margin-bottom: 1rem;
     line-height: 150%; /* 1.3125rem */
     letter-spacing: 0.00438rem;
 }
-kendo-textbox{
+.contact-details-kendo-textbox{
     width: 100%;
     min-height: 39px;
     margin-top: 0.5rem;
