@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KendoModule } from './kendo.module';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { EnquiryDetailsModule } from './features/enquiry-details/enquiry-details.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EnquiryDetailsModule } from './features/enquiry-details/enquiry-details
     BrowserAnimationsModule,
     EnquiryDetailsModule,
     KendoModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
