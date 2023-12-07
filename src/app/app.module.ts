@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './features/login/login.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WorkListModule } from './features/work-list/work-list.module';
 import { KendoModule } from './kendo.module';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { EnquiryDetailsModule } from './features/enquiry-details/enquiry-details.module';
@@ -28,7 +28,6 @@ import { LoaderService } from './core/services/loader.service';
     NotificationModule,
     LayoutModule,
     EnquiryDetailsModule,
-    BrowserAnimationsModule,
   ],
   providers: [LoginService, NotificationService, LoaderService],
   bootstrap: [AppComponent],
