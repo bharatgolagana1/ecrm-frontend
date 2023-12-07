@@ -22,27 +22,22 @@ export class EnquiryDetailsComponent implements OnInit {
   public steps = [
     {
       label: "Contact Details",
-      link:"contact-details",
       isValid: this.isStepValid,
       validate: this.shouldValidate,
     },
     {
       label: "Enquiry Details",
-      link:"enquiry-details",
       isValid: this.isStepValid,
       validate: this.shouldValidate,
     },
     {
       label: "Enquiry Description",
-      link:"enquiry-description",
       isValid: this.isStepValid,
       validate: this.shouldValidate,
     },
     {
       label: "Enquiry Update",
-      link:"enquiry-update",
-      isValid: this.isStepValid,
-      validate: this.shouldValidate,
+      disabled:true
     }
   ];
 current:any;
@@ -67,7 +62,8 @@ this.enquiryCaptureForm =  this.formBuilder.group({
     salesExecutive: new FormControl("", [Validators.required]),
   }),
   enquiryDescription: new FormGroup({
-    enterDescription: new FormControl("", [Validators.required])
+    enterDescription: new FormControl("", [Validators.required]),
+    attachment:new FormControl("", [Validators.required])
   })
 
 });
