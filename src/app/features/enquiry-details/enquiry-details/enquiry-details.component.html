@@ -9,21 +9,18 @@
         [steps]="steps"
         stepType="full"
         [(currentStep)]="currentStep">
-        <!-- <ng-template kendoStepperStepTemplate let-step>
-            <div class="enquiry-details-step-label">{{ step.label }}</div>
-          </ng-template> -->
       </kendo-stepper>
       
       <form class="k-form k-form-md" [formGroup]="enquiryCaptureForm">
         <app-contact-details *ngIf="currentStep === 0" [contactDetails]="currentGroup"></app-contact-details>
         <app-enquiry-details-forms *ngIf="currentStep === 1" [enquiryDetailsForms]="currentGroup"></app-enquiry-details-forms>
         <app-enquiry-description *ngIf="currentStep === 2" [enquiryDescription]="currentGroup"></app-enquiry-description>
-        
-    </form>
+      </form>
           <div class="enquiry-details-footer">
               <button kendobutton class="enquiry-details-cancel-button" *ngIf="currentStep !== 0" (click)="prev()" >Cancel</button>
               <button kendobutton class="enquiry-details-save-button" (click)="next()" *ngIf="currentStep !== 2" >Save</button>
-            </div>
+              <button kendoButton class="enquiry-details-save-button" (click)="submit()" *ngIf="currentStep === 2">Done</button>
+          </div>
     </div>
 
     
