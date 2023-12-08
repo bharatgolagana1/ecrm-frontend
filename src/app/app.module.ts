@@ -14,6 +14,7 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
 import { LoginService } from './features/login/components/login/login.service';
 import { NotificationService } from './core/services/notification.service';
 import { LoaderService } from './core/services/loader.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,8 +27,10 @@ import { LoaderService } from './core/services/loader.service';
     HttpClientModule,
     IndicatorsModule,
     NotificationModule,
+    WorkListModule,
     LayoutModule,
     EnquiryDetailsModule,
+    BrowserAnimationsModule,
   ],
   providers: [LoginService, NotificationService, LoaderService],
   bootstrap: [AppComponent],
