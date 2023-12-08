@@ -11,6 +11,7 @@ import { LoaderService } from 'src/app/core/services/loader.service';
 export class EnquiryUpdateComponent implements OnInit {
   public currentStep = 3;
   showAPILoader = false;
+
   constructor(
     private loaderService: LoaderService,
     private router: Router

@@ -5,7 +5,9 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StepperComponent } from '@progress/kendo-angular-layout';
+import { LoaderService } from 'src/app/core/services/loader.service';
 @Component({
   selector: 'app-enquiry-details',
   templateUrl: './enquiry-details.component.html',
@@ -13,6 +15,7 @@ import { StepperComponent } from '@progress/kendo-angular-layout';
 })
 export class EnquiryDetailsComponent implements OnInit {
   public currentStep = 0;
+  showAPILoader = false;
 
   @ViewChild('stepper', { static: true })
   public stepper!: StepperComponent;
@@ -53,7 +56,8 @@ export class EnquiryDetailsComponent implements OnInit {
 
   enquiryCaptureForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private loaderService: LoaderService,
+    private router: Router) {}
   ngOnInit(): void {
     this.enquiryCaptureForm = this.formBuilder.group({
       contactDteails: new FormGroup({
@@ -74,6 +78,9 @@ export class EnquiryDetailsComponent implements OnInit {
         enterDescription: new FormControl('', [Validators.required]),
         attachment: new FormControl('', [Validators.required]),
       }),
+    });
+    this.loaderService.loaderState.subscribe(res => {
+      this.showAPILoader = res;
     });
   }
 
@@ -103,7 +110,16 @@ export class EnquiryDetailsComponent implements OnInit {
     if (this.enquiryCaptureForm.valid) {
       console.log('Submitted data', this.enquiryCaptureForm.value);
     }
+    this.loaderService.showLoader();
+    console.log('loader', this.loaderService.loaderState, this.showAPILoader);
+    this.enquiryCaptureForm.markAllAsTouched();
+    console.log(this.enquiryCaptureForm.value);
+    setTimeout(() => {
+      this.loaderService.hideLoader();
+      this.router.navigate(['/enquiry-update']);
+    }, 3000);
   }
+ 
 
   private getGroupAt(index: number): FormGroup {
     const groups = Object.keys(this.enquiryCaptureForm.controls).map(
