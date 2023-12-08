@@ -14,9 +14,19 @@ const routes: Routes = [
     component: EnquiryDetailsComponent,
   },
   {
+<<<<<<< HEAD
     path: AppRoutePaths.EnquiryUpdate,
     component: EnquiryUpdateComponent,
   },
+=======
+    path:AppRoutePaths.EnquiryUpdate,
+    component:EnquiryUpdateComponent
+  },
+{
+    path:AppRoutePaths.EnquiryDetails,
+    component:EnquiryDetailsComponent
+},
+>>>>>>> b36ccb7 (work-list changed)
   {
     path: AppRoutePaths.EnquiryDetails,
     component: EnquiryDetailsComponent,
