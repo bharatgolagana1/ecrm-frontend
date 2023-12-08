@@ -17,7 +17,6 @@
         [(currentStep)]="currentStep"
         cssClass="enquiry-details-content--stepper">
       </kendo-stepper>
-
       <form class="k-form k-form-md" [formGroup]="enquiryCaptureForm">
         <app-contact-details
           *ngIf="currentStep === 0"
