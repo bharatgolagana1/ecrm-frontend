@@ -6,9 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-list.component.scss']
 })
 export class DashboardListComponent {
-  onClick(){
+
+  buttonClicked = false;
+
+  onButtonClick() {
+    this.buttonClicked = !this.buttonClicked;
     this.SalesCard.push(...this.SalesCard2);
- }
+  }
+
 
   SalesCard=[
     {
