@@ -24,7 +24,8 @@ export enum AppRoutePaths {
   EnquiryDetails = 'enquiry-details',
   WorkList = 'work-list',
   EnquiryDetailsListView = 'enquiry-listview',
-  LoginDialog = "login-dialog"
+  LoginDialog = "login-dialog",
+  CreatePassword ='create-password'
 }
 
 export enum EcrmUserAdminRoutePath {

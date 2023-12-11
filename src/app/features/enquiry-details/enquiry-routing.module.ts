@@ -10,15 +10,10 @@ const routes: Routes = [
     component: EnquiryDetailsComponent,
   },
   {
-    path: AppRoutePaths.EnquiryDetails,
-    component: EnquiryDetailsComponent,
+      path:AppRoutePaths.EnquiryDetails,
+      component:EnquiryDetailsComponent
   },
   {
-<<<<<<< HEAD
-    path: AppRoutePaths.EnquiryUpdate,
-    component: EnquiryUpdateComponent,
-  },
-=======
     path:AppRoutePaths.EnquiryUpdate,
     component:EnquiryUpdateComponent
   },
@@ -26,19 +21,10 @@ const routes: Routes = [
     path:AppRoutePaths.EnquiryDetails,
     component:EnquiryDetailsComponent
 },
->>>>>>> b36ccb7 (work-list changed)
   {
-    path: AppRoutePaths.EnquiryDetails,
-    component: EnquiryDetailsComponent,
-  },
-  {
-    path: AppRoutePaths.EnquiryDetails,
-    component: EnquiryDetailsComponent,
-  },
-  {
-    path: AppRoutePaths.EnquiryDetailsListView,
-    component: EnquiryDetailsListViewComponent,
-  },
+      path:AppRoutePaths.EnquiryDetailsListView,
+      component: EnquiryDetailsListViewComponent
+   },
 ];
 
 @NgModule({

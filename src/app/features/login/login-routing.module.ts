@@ -6,7 +6,7 @@ import { EmailLoginComponent } from './components/email-login/email-login.compon
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
-
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
 
 
 const routes: Routes = [
@@ -30,7 +30,10 @@ const routes: Routes = [
       path: AppRoutePaths.LoginDialog,
       component:LoginDialogComponent ,
     },
-
+    {
+      path: AppRoutePaths.CreatePassword,
+      component:CreatePasswordComponent,
+    },
 
 ];
 
