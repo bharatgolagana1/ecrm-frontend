@@ -16,6 +16,7 @@ import { LoaderService } from 'src/app/core/services/loader.service';
 export class EnquiryDetailsComponent implements OnInit {
   public currentStep = 0;
   showAPILoader = false;
+  invalid=false
 
   @ViewChild('stepper', { static: true })
   public stepper!: StepperComponent;
@@ -55,6 +56,7 @@ export class EnquiryDetailsComponent implements OnInit {
   current: any;
 
   enquiryCaptureForm!: FormGroup;
+
 
   constructor(private formBuilder: FormBuilder, private loaderService: LoaderService,
     private router: Router) {}
@@ -136,4 +138,13 @@ export class EnquiryDetailsComponent implements OnInit {
 
     return groups[index];
   }
+
+  onBackClickHandle() {
+    this.router.navigate(['/dashboard']);
+  }
+
+  onReset() {
+    this.enquiryCaptureForm.reset();
+  }
+  
 }
