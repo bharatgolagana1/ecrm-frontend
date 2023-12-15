@@ -17,7 +17,6 @@ export class EnquiryDetailsService {
     const url = `${this.loginUrl}`;
     return this.http.get(url);
   }
-<<<<<<< HEAD
   getSoldToSiteList(contactId: number) {
     const url = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetLESiteByContact`;
     const body = {
@@ -33,7 +32,6 @@ export class EnquiryDetailsService {
     };
     return this.http.post(url, body);
   }
-=======
 
   getgeneratedFrom(){
     return this.http.get(this.generatedFrom);
@@ -54,5 +52,4 @@ export class EnquiryDetailsService {
   return this.http.get(this.quoteEntityCompany)
  }
 
->>>>>>> 55d1ff3 (enquiry-api)
 }
