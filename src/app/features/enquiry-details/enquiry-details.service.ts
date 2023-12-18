@@ -10,7 +10,6 @@ export class EnquiryDetailsService {
   private generatedFrom = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetGeneratedFrom`;
   private salesWorkflow =  `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetSalesWorkflow`;
   private salesChannel   = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetSalesChannel`;
-  private generatedby = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetGeneratedBy`;
   private quoteEntityCompany=`${AppSettingsConfigKey.APIURL}/api/Enquiry/GetQuoteCompany`;
   private fetchFunnelWorklistUrl =`${AppSettingsConfigKey.APIURL}/api/Enquiry/FetchFunnelWorklist`;
 
@@ -35,24 +34,49 @@ export class EnquiryDetailsService {
     return this.http.post(url, body);
   }
 
+ 
+
   getgeneratedFrom(){
     return this.http.get(this.generatedFrom);
   }
+  getgeneratedBy(generatedFrom : string){
+    const url = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetGeneratedBy`;
 
+    const body = {
+      generatedFrom: generatedFrom,
+    };
+    return this.http.post(url, body);
+  }
+
+  getquoteEntityCompany(){
+    return this.http.get(this.quoteEntityCompany)
+   }
+  
+  getquoteEntityCurrency(companyID : number){
+    const url = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetQuoteCurrencyByCompany`;
+
+    const body = {
+      quoteCompanyID: companyID,
+    };
+    return this.http.post(url, body);
+  }
   getsalesWorkFlow(){
     return this.http.get(this.salesWorkflow);
   }
- getsalesChannel(){
+  getsalesChannel(){
   return this.http.get(this.salesChannel)
- }
-
- postgeneratedBy(body : unknown){
-  return this.http.post(this.generatedby ,body)
- }
-
- getquoteEntityCompany(){
-  return this.http.get(this.quoteEntityCompany)
- }
+  }
+  getsalesExecutive( salesChannelID : number  ){
+    const url =`${AppSettingsConfigKey.APIURL}/api/Enquiry/GetSalesExecutives`;
+    
+    const body = {
+      enqId: 0,
+      leid: 0,
+      salesChannelID:  salesChannelID,
+      leSiteID: 0,
+    };
+    return this.http.post(url, body);
+  }
  
  getEnquirylist() {
     const body = {
