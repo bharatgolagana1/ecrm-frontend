@@ -66,14 +66,14 @@ export class EnquiryDetailsService {
   getsalesChannel(){
   return this.http.get(this.salesChannel)
   }
-  getsalesExecutive( leId:string | number,salesChannelID : string | number, leSiteID: string| number  ){
+  getsalesExecutive(enId :string | number, leId:string | number,  salesChannelID:string | number, leSiteID :string | number ){
     const url =`${AppSettingsConfigKey.APIURL}/api/Enquiry/GetSalesExecutives`;
     
     const body = {
-      enqId: 0,
+      enqId: enId,
       leid: leId,
       salesChannelID,
-      leSiteID,
+      leSiteID ,
     };
     return this.http.post(url, body);
   }

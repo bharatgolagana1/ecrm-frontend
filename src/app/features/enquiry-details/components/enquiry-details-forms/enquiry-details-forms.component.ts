@@ -114,20 +114,16 @@ handlequoteEntityCurrency(company : quoteEntityCompany){
 }
 
 
-@Input() 
-public enquiryCaptureForm!:FormGroup;
+
 handleSalesChannel(sales:salesChannel){ 
-  // if (sales && sales?.salesChannelID) {
-  //   this.enquiryDetailsService
-  //     .getsalesExecutive(this.enquiryCaptureForm.value )
-  //     .subscribe(res => {
-  //       this.salesExecutive = res;
-  //       console.log(this.enquiryCaptureForm.value)
-  //       // this.enquiryDetailsService.getsalesExecutive(this.enquiryCaptureForm.value.soldToSite.soldToLE)
-  //     });
-  console.log(this.enquiryCaptureForm, "sales chn", sales)
-  
+  if (sales && sales?.salesChannelID) {
+    this.enquiryDetailsService
+      .getsalesExecutive(0, 0, sales.salesChannelID ,21665 )
+      .subscribe(res => {
+        this.salesExecutive = res;
+      });
  }
+}
 
 
 
