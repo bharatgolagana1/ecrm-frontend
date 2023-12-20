@@ -58,13 +58,13 @@ export class EnquiryDetailsFormsComponent implements OnInit {
   public enquiryDetailsForms!: FormGroup;
   constructor(public enquiryDetailsService: EnquiryDetailsService) {}
   ngOnInit(): void {
-  this.generatedfrom();
-  this.salesworkflow(); 
-  this.fetchsaleschannel();
+  this.generatedFrom();
+  this.salesWorkFlow(); 
+  this.fetchsalesChannel();
   this.quoteEntityCompany();
 
   }
-  private generatedfrom(){
+  private generatedFrom(){
     this.enquiryDetailsService.getgeneratedFrom().subscribe(data => {
      console.log('generated from', data);
      this.areaList = data;
@@ -82,10 +82,7 @@ export class EnquiryDetailsFormsComponent implements OnInit {
   }
  }
 
-
-
-
-  private salesworkflow(){
+  private salesWorkFlow(){
   this.enquiryDetailsService.getsalesWorkFlow().subscribe(data => {
     console.log('get sales work flow', data);
     this.sales = data;
@@ -109,21 +106,27 @@ handlequoteEntityCurrency(company : quoteEntityCompany){
   }
 }
 
-  private fetchsaleschannel(){
+  private fetchsalesChannel(){
   this.enquiryDetailsService.getsalesChannel().subscribe(data => {
     console.log('get sales channel', data);
     this.channel = data;
   });
 }
 
-handlesaleschannel(sales: salesChannel){
-  if (sales && sales?.salesChannelID) {
-    this.enquiryDetailsService
-      .getsalesExecutive(sales.salesChannelID)
-      .subscribe(res => {
-        this.salesExecutive = res;
-      });
-  }
+
+@Input() 
+public enquiryCaptureForm!:FormGroup;
+handleSalesChannel(sales:salesChannel){ 
+  // if (sales && sales?.salesChannelID) {
+  //   this.enquiryDetailsService
+  //     .getsalesExecutive(this.enquiryCaptureForm.value )
+  //     .subscribe(res => {
+  //       this.salesExecutive = res;
+  //       console.log(this.enquiryCaptureForm.value)
+  //       // this.enquiryDetailsService.getsalesExecutive(this.enquiryCaptureForm.value.soldToSite.soldToLE)
+  //     });
+  console.log(this.enquiryCaptureForm, "sales chn", sales)
+  
  }
 
 
