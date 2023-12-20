@@ -34,7 +34,6 @@ export class ContactDetailsComponent implements OnInit {
   constructor(public enquiryDetailsService: EnquiryDetailsService) {}
   ngOnInit(): void {
     this.enquiryDetailsService.getSoldToContactsList().subscribe(data => {
-      console.log('sold to contacts list', data);
       this.soldToContact = data;
     });
   }
@@ -54,8 +53,14 @@ export class ContactDetailsComponent implements OnInit {
   handleSoldToSiteChanged(site: SoldToSite) {
     this.enquiryDetailsService
       .getRegionFromSiteList(site.leSiteID)
-      .subscribe(res => {
+      .subscribe((res:any) => {
         this.regionsList = res || '';
+        this.contactDetails.patchValue({
+          region: res[0]?.comboName ,// Patch only the 'region' FormControl value
+     
+          soldToLE: res[1]?.comboName
+      
+        });
       });
   }
 }
