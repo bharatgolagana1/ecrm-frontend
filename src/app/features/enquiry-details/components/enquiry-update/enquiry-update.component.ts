@@ -12,13 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class EnquiryUpdateComponent implements OnInit {
   public currentStep = 3;
   showAPILoader = false;
-  invalid=true;
+  invalid = true;
   id!: string | null;
 
   constructor(
     private loaderService: LoaderService,
     private router: Router,
-    public enquiryDetailsService:EnquiryDetailsService,
+    public enquiryDetailsService: EnquiryDetailsService,
     private route: ActivatedRoute
   ) {}
 
@@ -26,13 +26,18 @@ export class EnquiryUpdateComponent implements OnInit {
     this.loaderService.loaderState.subscribe(res => {
       this.showAPILoader = res;
     });
-    this.enquiryDetailsService.getupdateEnqDropdown().subscribe((data:any) => {
-      this.dealPositionList = data.filter((item:any) => item.comboType === "DEALPOSITION");
-      this.probabilityList = data.filter((item:any) => item.comboType === "PROBABILITY");
-      this.enquiryModeList = data.filter((item:any) => item.comboType === "ENQUIRYMODE");
-    })
+    this.enquiryDetailsService.getupdateEnqDropdown().subscribe((data: any) => {
+      this.dealPositionList = data.filter(
+        (item: any) => item.comboType === 'DEALPOSITION'
+      );
+      this.probabilityList = data.filter(
+        (item: any) => item.comboType === 'PROBABILITY'
+      );
+      this.enquiryModeList = data.filter(
+        (item: any) => item.comboType === 'ENQUIRYMODE'
+      );
+    });
     this.id = this.route.snapshot.paramMap.get('id');
-  
   }
   public step = [
     {
@@ -52,7 +57,6 @@ export class EnquiryUpdateComponent implements OnInit {
     },
   ];
 
-
   public dealPositionList: Array<string> = [];
   public probabilityList: Array<string> = [];
   public enquiryModeList: Array<string> = [];
@@ -65,32 +69,40 @@ export class EnquiryUpdateComponent implements OnInit {
     remarksValue: new FormControl('', Validators.required),
     attachment: new FormControl('', Validators.required),
   });
-  public updateEnquiryForm(): void {
-    console.log("form invalid", this.enquiryUpdateForm)
-    if(this.enquiryUpdateForm.valid){
-      this.enquiryUpdateForm.markAllAsTouched();
+  public async updateEnquiryForm(): Promise<void> {
+    console.log('form invalid', this.enquiryUpdateForm);
+    if (this.enquiryUpdateForm.valid) {
+      this.loaderService.showLoader();
+      const updatedBody = await this.handleUpdateEnquiryBody(
+        this.enquiryUpdateForm.value,
+        1
+      );
+      console.log('updated body', updatedBody);
+      this.enquiryDetailsService
+        .updateEnquiryDetails(updatedBody)
+        ?.subscribe(data => {
+          console.log('after save', data);
+          this.loaderService.hideLoader();
+          this.router.navigate(['enquiry-listview']);
+        });
+    }
+  }
 
-    }
-    if(this.enquiryUpdateForm){
-      this.enquiryDetailsService.updateEnquiryDetails(this.enquiryUpdateForm.value, 1).subscribe((data)=>{
-        console.log("after save",data)
-        this.loaderService.hideLoader();
-      })
-      console.log("submit",this.enquiryUpdateForm.value)
-    }
-    
-    this.loaderService.showLoader();
-    console.log('loader', this.loaderService.loaderState, this.showAPILoader);
-    this.enquiryUpdateForm.markAllAsTouched();
-    console.log(this.enquiryUpdateForm.value);
-    setTimeout(() => {
-      this.loaderService.hideLoader();
-      this.router.navigate(['/work-list']);
-    }, 3000);
+  async handleUpdateEnquiryBody(formData: any, id: string | number) {
+    console.log('formdata', formData);
+    return {
+      enqID: id,
+      remarks: formData.remarksValue,
+      probabilityID: formData.probability,
+      dealPositionID: formData.dealPosition,
+      dealValue: formData.dealValue,
+      loginID: 342,
+      POExpectedDate: formData.poExpectedDate,
+      modeOfCommunicationID: formData.modeOfCommunication,
+    };
   }
 
   onReset() {
     this.enquiryUpdateForm.reset();
   }
-
 }
