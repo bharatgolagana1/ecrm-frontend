@@ -84,6 +84,27 @@ export class EnquiryDetailsService {
     };
     return this.http.post(this.fetchFunnelWorklistUrl,body);
   }
+
+  getupdateEnqDropdown() {
+    const updateEnqDropdownUrl = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetUpdateEnqDropdowns`;
+    return this.http.get(updateEnqDropdownUrl);
+  }
+
+  updateEnquiryDetails(formData: any, id: string | number) {
+    const url = `${AppSettingsConfigKey.APIURL}/api/Enquiry/UpdateEnquiry`;
+    const body = {
+      enqID: id,
+      remarks: formData.enquiryUpdateForm.remarksValue,
+      probabilityID: formData.enquiryUpdateForm.probability,
+      dealPositionID: formData.enquiryUpdateForm.dealPosition,
+      dealValue: formData.enquiryUpdateForm.dealValue,
+      loginID: 342,
+      POExpectedDate: formData.enquiryUpdateForm.poExpectedDate,
+      modeOfCommunicationID: formData.enquiryUpdateForm.modeOfCommunication,
+    };
+    return this.http.put(url, body);
+  }
+
 }
 
  
