@@ -13,6 +13,9 @@ export class EnquiryDetailsService {
   private quoteEntityCompany = `${AppSettingsConfigKey.APIURL}/api/Enquiry/GetQuoteCompany`;
   private fetchFunnelWorklistUrl = `${AppSettingsConfigKey.APIURL}/api/Enquiry/FetchFunnelWorklist`;
 
+  public regionId: string | number = '';
+  public leID: string | number = '';
+
   constructor(private http: HttpClient) {}
   getSoldToContactsList() {
     const url = `${this.loginUrl}`;
@@ -33,13 +36,13 @@ export class EnquiryDetailsService {
     };
     return this.http.post(url, body);
   }
-  getAddEnquiry(formData:any){
+  getAddEnquiry(formData: any) {
     const url = `${AppSettingsConfigKey.APIURL}/api/Enquiry/AddEnquiry`;
-    const body ={
-      soldToLEID: formData.contactDteails.soldToLE,
+    const body = {
+      soldToLEID: this.leID,
       soldToContactID: formData.contactDteails.soldToContact,
       soldToLESiteID: formData.contactDteails.soldToSite,
-      regionID: formData.contactDteails.region,
+      regionID: this.regionId,
       salesChannelID: formData.enquiryDetailsForms.salesChannel,
       salesExecutiveID: formData.enquiryDetailsForms.salesExecutive,
       workflowID: formData.enquiryDetailsForms.salesWorkFlow,
@@ -48,12 +51,10 @@ export class EnquiryDetailsService {
       quoteCompanyID: formData.enquiryDetailsForms.quoteEntityCompany,
       quoteCurrencyID: formData.enquiryDetailsForms.quoteEntityCurrency,
       enquiryDescription: formData.enquiryDescription.enterDescription,
-      loginID: 342
-      
+      loginID: 342,
     };
-    return this.http.post(url,body)
+    return this.http.post(url, body);
   }
- 
 
   getgeneratedFrom() {
     return this.http.get(this.generatedFrom);

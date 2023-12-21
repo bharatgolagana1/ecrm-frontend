@@ -15,13 +15,11 @@ import { EnquiryDetailsService } from '../../enquiry-details.service';
   templateUrl: './enquiry-details.component.html',
   styleUrls: ['./enquiry-details.component.scss'],
 })
-
-
 export class EnquiryDetailsComponent implements OnInit {
   public currentStep = 0;
   showAPILoader = false;
-  invalid=false
-  public getAddEnquiry : unknown = [];
+  invalid = false;
+  public getAddEnquiry: unknown = [];
   @ViewChild('stepper', { static: true })
   public stepper!: StepperComponent;
 
@@ -61,9 +59,12 @@ export class EnquiryDetailsComponent implements OnInit {
 
   enquiryCaptureForm!: FormGroup;
 
-
-  constructor(private formBuilder: FormBuilder, private loaderService: LoaderService,public enquiryDetailsService: EnquiryDetailsService,
-    private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private loaderService: LoaderService,
+    public enquiryDetailsService: EnquiryDetailsService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.loaderService.loaderState.subscribe(res => {
       this.showAPILoader = res;
@@ -72,8 +73,14 @@ export class EnquiryDetailsComponent implements OnInit {
       contactDteails: new FormGroup({
         soldToContact: new FormControl('', Validators.required),
         soldToSite: new FormControl('', Validators.required),
-        soldToLE: new FormControl({value: '', disabled: true}, Validators.required, ),
-        region: new FormControl({value: '', disabled: true}, Validators.required),
+        soldToLE: new FormControl(
+          { value: '', disabled: true },
+          Validators.required
+        ),
+        region: new FormControl(
+          { value: '', disabled: true },
+          Validators.required
+        ),
       }),
       enquiryDetailsForms: new FormGroup({
         generatedBy: new FormControl('', [Validators.required]),
@@ -113,23 +120,19 @@ export class EnquiryDetailsComponent implements OnInit {
   }
 
   public submit(): void {
-   
     if (!this.currentGroup.valid) {
       this.currentGroup.markAllAsTouched();
       this.stepper.validateSteps();
     }
     if (this.enquiryCaptureForm.valid) {
       this.loaderService.showLoader();
-      this.enquiryDetailsService.getAddEnquiry(this.enquiryCaptureForm.value).subscribe((data) =>{
-        console.log("after submit", data)
-        this.loaderService.hideLoader();
-      })
-      
-      console.log('Submitted data', this.enquiryCaptureForm.value);
-      // setTimeout(() => {
-      //   this.loaderService.hideLoader();
-      //   this.router.navigate(['/work-list']);
-      // }, 3000);
+      this.enquiryDetailsService
+        .getAddEnquiry(this.enquiryCaptureForm.value)
+        .subscribe(data => {
+          console.log('after submit', data);
+          this.loaderService.hideLoader();
+          this.router.navigate(['/enquiry-listview']);
+        });
     }
     this.loaderService.showLoader();
     console.log('loader', this.loaderService.loaderState, this.showAPILoader);
@@ -139,9 +142,7 @@ export class EnquiryDetailsComponent implements OnInit {
     //   this.loaderService.hideLoader();
     //   this.router.navigate(['/enquiry-update']);
     // }, 3000);
-  
   }
- 
 
   private getGroupAt(index: number): FormGroup {
     const groups = Object.keys(this.enquiryCaptureForm.controls).map(
@@ -158,5 +159,4 @@ export class EnquiryDetailsComponent implements OnInit {
   onReset() {
     this.enquiryCaptureForm.reset();
   }
-  
 }
