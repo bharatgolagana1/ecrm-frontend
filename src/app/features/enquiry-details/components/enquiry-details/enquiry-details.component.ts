@@ -8,16 +8,20 @@ import {
 import { Router } from '@angular/router';
 import { StepperComponent } from '@progress/kendo-angular-layout';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { EnquiryDetailsService } from '../../enquiry-details.service';
+
 @Component({
   selector: 'app-enquiry-details',
   templateUrl: './enquiry-details.component.html',
   styleUrls: ['./enquiry-details.component.scss'],
 })
+
+
 export class EnquiryDetailsComponent implements OnInit {
   public currentStep = 0;
   showAPILoader = false;
   invalid=false
-
+  public getAddEnquiry : unknown = [];
   @ViewChild('stepper', { static: true })
   public stepper!: StepperComponent;
 
@@ -58,7 +62,7 @@ export class EnquiryDetailsComponent implements OnInit {
   enquiryCaptureForm!: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private loaderService: LoaderService,
+  constructor(private formBuilder: FormBuilder, private loaderService: LoaderService,public enquiryDetailsService: EnquiryDetailsService,
     private router: Router) {}
   ngOnInit(): void {
     this.loaderService.loaderState.subscribe(res => {
@@ -74,6 +78,7 @@ export class EnquiryDetailsComponent implements OnInit {
       enquiryDetailsForms: new FormGroup({
         generatedBy: new FormControl('', [Validators.required]),
         generatedFrom: new FormControl('', [Validators.required]),
+        quoteEntityCompany: new FormControl('', [Validators.required]),
         quoteEntityCurrency: new FormControl('', [Validators.required]),
         salesWorkFlow: new FormControl('', [Validators.required]),
         salesChannel: new FormControl('', [Validators.required]),
@@ -108,26 +113,33 @@ export class EnquiryDetailsComponent implements OnInit {
   }
 
   public submit(): void {
+   
     if (!this.currentGroup.valid) {
       this.currentGroup.markAllAsTouched();
       this.stepper.validateSteps();
     }
     if (this.enquiryCaptureForm.valid) {
       this.loaderService.showLoader();
-      console.log('Submitted data', this.enquiryCaptureForm.value);
-      setTimeout(() => {
+      this.enquiryDetailsService.getAddEnquiry(this.enquiryCaptureForm.value).subscribe((data) =>{
+        console.log("after submit", data)
         this.loaderService.hideLoader();
-        this.router.navigate(['/work-list']);
-      }, 3000);
+      })
+      
+      console.log('Submitted data', this.enquiryCaptureForm.value);
+      // setTimeout(() => {
+      //   this.loaderService.hideLoader();
+      //   this.router.navigate(['/work-list']);
+      // }, 3000);
     }
     this.loaderService.showLoader();
     console.log('loader', this.loaderService.loaderState, this.showAPILoader);
     this.enquiryCaptureForm.markAllAsTouched();
-    console.log(this.enquiryCaptureForm.value);
-    setTimeout(() => {
-      this.loaderService.hideLoader();
-      this.router.navigate(['/enquiry-update']);
-    }, 3000);
+    console.log(this.enquiryCaptureForm);
+    // setTimeout(() => {
+    //   this.loaderService.hideLoader();
+    //   this.router.navigate(['/enquiry-update']);
+    // }, 3000);
+  
   }
  
 

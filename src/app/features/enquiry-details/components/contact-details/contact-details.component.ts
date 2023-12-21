@@ -56,9 +56,8 @@ export class ContactDetailsComponent implements OnInit {
       .subscribe((res:any) => {
         this.regionsList = res || '';
         this.contactDetails.patchValue({
-          region: res[0]?.comboName ,// Patch only the 'region' FormControl value
-     
-          soldToLE: res[1]?.comboName
+          region: res[0]?.comboName,
+            soldToLE: res[1]?.comboName
       
         });
       });
