@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { StepperComponent } from '@progress/kendo-angular-layout';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { EnquiryDetailsService } from '../../enquiry-details.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-enquiry-details',
@@ -63,7 +64,8 @@ export class EnquiryDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     public enquiryDetailsService: EnquiryDetailsService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
   ngOnInit(): void {
     this.loaderService.loaderState.subscribe(res => {
@@ -131,6 +133,10 @@ export class EnquiryDetailsComponent implements OnInit {
         .subscribe(data => {
           console.log('after submit', data);
           this.loaderService.hideLoader();
+          this.notificationService.showNotification(
+            'Created enquiry successfully',
+            'success'
+          );
           this.router.navigate(['/enquiry-listview']);
         });
     }
@@ -138,10 +144,6 @@ export class EnquiryDetailsComponent implements OnInit {
     console.log('loader', this.loaderService.loaderState, this.showAPILoader);
     this.enquiryCaptureForm.markAllAsTouched();
     console.log(this.enquiryCaptureForm);
-    // setTimeout(() => {
-    //   this.loaderService.hideLoader();
-    //   this.router.navigate(['/enquiry-update']);
-    // }, 3000);
   }
 
   private getGroupAt(index: number): FormGroup {
