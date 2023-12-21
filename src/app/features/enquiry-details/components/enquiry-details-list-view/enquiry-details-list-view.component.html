@@ -8,7 +8,6 @@
       <img src="assets/enquiry-details-listview-img/refresh-cw.svg" alt="new" />
     </div>
   </div>
-
   <div class="enquiry-details-listview--searchbox">
     <kendo-textbox
       [(ngModel)]="searchTerm"
@@ -22,9 +21,7 @@
       </ng-template>
     </kendo-textbox>
   </div>
-
   <div class="enquiry-details-listview--sub-title">Contact Details</div>
-
   <div
     *ngFor="let a of filteredCards()"
     class="enquiry-details-listview--cards">
@@ -40,11 +37,9 @@
             routerLink="/enquiry-update" />
         </div>
       </div>
-
       <div class="enquiry-details-listview--kendo-splitter">
         <kendo-splitter orientation="horizontal"></kendo-splitter>
       </div>
-
       <div class="enquiry-details-listview--kendo-card-content">
         <div class="enquiry-details-listview--kendo-card-sold-details">
           <div class="enquiry-details-listview--kendo-card-sub-title">
@@ -68,7 +63,6 @@
           </div>
         </div>
       </div>
-
       <div class="enquiry-details-listview--information-outline-card">
         <div>
           <img src="assets/enquiry-details-listview-img/error.svg" alt="new" />
@@ -79,7 +73,6 @@
       </div>
     </kendo-card>
   </div>
-
   <div class="enquiry-details-listview--kendo-pager">
     <kendo-datapager
       class="enquiry-details-listview--kendo-datapager"

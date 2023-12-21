@@ -1,10 +1,10 @@
-import { Component, OnInit, Type, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   PageChangeEvent,
   PagerNumericButtonsComponent,
 } from '@progress/kendo-angular-pager';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EnquiryDetailsService } from '../../enquiry-details.service';
-
 interface EnquiryList {
   dealNo: string;
   enqID: number;
@@ -17,7 +17,6 @@ interface EnquiryList {
   soldToContact: string;
   wsApprovalPendingWith: string;
 }
-
 @Component({
   selector: 'app-enquiry-details-list-view',
   templateUrl: './enquiry-details-list-view.component.html',
@@ -25,7 +24,6 @@ interface EnquiryList {
 })
 export class EnquiryDetailsListViewComponent implements OnInit {
   contactCards: EnquiryList[] = [];
-  constructor(private enquiryDetailService: EnquiryDetailsService) {}
 
   ngOnInit() {
     this.enquiryDetailService.getEnquirylist().subscribe((data: any) => {
@@ -34,6 +32,12 @@ export class EnquiryDetailsListViewComponent implements OnInit {
     });
   }
   searchTerm = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private enquiryDetailService: EnquiryDetailsService
+  ) {}
 
   filteredCards() {
     return this.contactCards.filter(
@@ -56,4 +60,29 @@ export class EnquiryDetailsListViewComponent implements OnInit {
     this.pageSize = e.take;
     // this.pager.pageChooserLabel;
   }
+
+  navigateById(id: string | number) {
+    this.router.navigate(['/enquiry-update', `${id}`]);
+  }
+
+  contactcards = [
+    {
+      id: 1,
+      number: '#3D09A',
+      solddetails: ' Ravichandran Venugopal',
+      soldsite: 'ENOC Processing Company LLC- Dubai',
+    },
+    {
+      id: 2,
+      number: '#3D09B',
+      solddetails: ' Ravichandran Venugopal',
+      soldsite: 'ENOC Processing Company LLC- Dubai',
+    },
+    {
+      id: 3,
+      number: '#3D09C',
+      solddetails: ' Ravichandran Venugopal',
+      soldsite: 'ENOC Processing Company LLC- Dubai',
+    },
+  ];
 }
