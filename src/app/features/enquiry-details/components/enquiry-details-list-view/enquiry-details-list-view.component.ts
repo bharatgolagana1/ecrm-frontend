@@ -43,13 +43,14 @@ export class EnquiryDetailsListViewComponent implements OnInit {
   }
   
   filterData(): void {
+    this.filteredCards = [...this.contactCards];
     if (this.searchTerm.trim() !== '') {
       this.filteredCards = this.contactCards.filter(a =>
-        a.dealNo.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+        (a.dealNo && a.dealNo.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+      ( a.soldToContact&& a.soldToContact.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+      (a.soldToLE && a.soldToLE.toLowerCase().includes(this.searchTerm.toLowerCase()))
       );
-    } else {
-      this.filteredCards = [...this.contactCards]; 
-    }
+    } 
     this.total = this.filteredCards.length;
     this.applyPagination();
   }
