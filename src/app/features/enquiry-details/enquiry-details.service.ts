@@ -51,6 +51,7 @@ export class EnquiryDetailsService {
       quoteCompanyID: formData.enquiryDetailsForms.quoteEntityCompany,
       quoteCurrencyID: formData.enquiryDetailsForms.quoteEntityCurrency,
       enquiryDescription: formData.enquiryDescription.enterDescription,
+      attachment: formData.enquiryDescription.attachment,
       loginID: 342,
     };
     return this.http.post(url, body);
