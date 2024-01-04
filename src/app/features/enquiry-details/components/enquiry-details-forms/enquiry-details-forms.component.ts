@@ -80,7 +80,6 @@ export class EnquiryDetailsFormsComponent implements OnInit {
   }
   private generatedFrom(){
     this.enquiryDetailsService.getgeneratedFrom().subscribe(data => {
-    //  console.log('generated from', data);
      this.areaList = data;
      this.generatedFromList = data;
    });
@@ -110,14 +109,12 @@ export class EnquiryDetailsFormsComponent implements OnInit {
 
   private salesWorkFlow(){
   this.enquiryDetailsService.getsalesWorkFlow().subscribe(data => {
-    // console.log('get sales work flow', data);
     this.sales = data;
   });
  }
 
  private quoteEntityCompany(){
   this.enquiryDetailsService.getquoteEntityCompany().subscribe(data => {
-    // console.log('get sales channel', data);
     this.company = data;
     this.companyList = data;
   });
@@ -135,7 +132,6 @@ handlequoteEntityCurrency(company : quoteEntityCompany){
 
   private fetchsalesChannel(){
   this.enquiryDetailsService.getsalesChannel().subscribe(data => {
-    // console.log('get sales channel', data);
     this.channel = data;
   });
 }
