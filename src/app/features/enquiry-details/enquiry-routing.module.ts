@@ -4,7 +4,11 @@ import { AppRoutePaths } from 'src/app/core/Constants';
 import { EnquiryDetailsComponent } from './components/enquiry-details/enquiry-details.component';
 import { EnquiryUpdateComponent } from './components/enquiry-update/enquiry-update.component';
 import { EnquiryDetailsListViewComponent } from './components/enquiry-details-list-view/enquiry-details-list-view.component';
+<<<<<<< HEAD
 import { AuthGuard } from 'src/app/auth.guard';
+=======
+import { EnquiryDetailsHistoryComponent } from './components/enquiry-details-history/enquiry-details-history.component';
+>>>>>>> ac5d251 (history-page-update)
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +36,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: EnquiryDetailsListViewComponent,
   },
+  {
+    path:AppRoutePaths.EnquiryDetailsHistory,
+    component:EnquiryDetailsHistoryComponent
+  }
 ];
 
 @NgModule({
