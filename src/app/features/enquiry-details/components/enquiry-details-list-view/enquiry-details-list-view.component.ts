@@ -14,6 +14,7 @@ id: string|number;
   salesExecutive: string;
   soldToContact: string;
   wsApprovalPendingWith: string;
+  soldToContPhoneNo: number
 }
 
 @Component({
