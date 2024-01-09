@@ -36,7 +36,6 @@ export class EnquiryDetailsHistoryComponent implements OnInit{
 
   enquiryDetailsHistory(){
     this.enquiryDetailService.getEnquiryDetailsHistory().subscribe((data: any) => {
-      console.log(data);
       this.contactCards = data;
       this.filterData();
     });
