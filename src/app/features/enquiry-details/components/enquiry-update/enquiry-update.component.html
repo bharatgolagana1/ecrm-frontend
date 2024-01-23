@@ -43,6 +43,7 @@
               class="enquiry-update--dropdownlist"
               formControlName="poExpectedDate"
               #poexpecteddate
+              [readOnlyInput]="true" 
               placeholder="-select-"
               formatPlaceholder="formatPattern"
               format="MM/dd/yyyy"
@@ -54,35 +55,32 @@
         </kendo-formfield>
         <kendo-formfield>
           <div class="enquiry-update--content">
-            <kendo-label class="enquiry-update--label" [for]="dealposition"
-              >Deal Position</kendo-label
-            >
-            <kendo-dropdownlist
+            <kendo-label class="enquiry-update--label" [for]="dealposition">Deal Position</kendo-label>
+            <kendo-textbox
               class="enquiry-update--dropdownlist"
               formControlName="dealPosition"
               #dealposition
               [data]="dealPositionList"
               textField="comboName"
               valueField="comboID"
-              [valuePrimitive]="true"></kendo-dropdownlist>
+              [valuePrimitive]="true"
+            ></kendo-textbox>
           </div>
-          <kendo-formerror class="enquiry-update--error-msg"
-            >Deal position is required</kendo-formerror
-          >
+          <kendo-formerror class="enquiry-update--error-msg">Deal position is required</kendo-formerror>
         </kendo-formfield>
         <kendo-formfield>
           <div class="enquiry-update--content">
             <kendo-label class="enquiry-update--label" [for]="probability"
               >Probability</kendo-label
             >
-            <kendo-dropdownlist
+            <kendo-textbox
               class="enquiry-update--dropdownlist"
               formControlName="probability"
               #probability
               [data]="probabilityList"
               textField="comboName"
               valueField="comboID"
-              [valuePrimitive]="true"></kendo-dropdownlist>
+              [valuePrimitive]="true"></kendo-textbox>
           </div>
           <kendo-formerror class="enquiry-update--error-msg"
             >Probability is required</kendo-formerror
