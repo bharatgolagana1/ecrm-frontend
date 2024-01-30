@@ -5,6 +5,7 @@ import { LoaderService } from 'src/app/core/services/loader.service';
 import { EnquiryDetailsService } from '../../enquiry-details.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/features/login/components/login/login.service';
+import { valueFrom } from '@progress/kendo-angular-dropdowns/common/util';
 @Component({
   selector: 'app-enquiry-update',
   templateUrl: './enquiry-update.component.html',
@@ -15,6 +16,7 @@ export class EnquiryUpdateComponent implements OnInit {
   showAPILoader = false;
   invalid = true;
   id!: string | null;
+  poExpectedDate: Date = new Date();
 
   constructor(
     private loaderService: LoaderService,
@@ -40,6 +42,7 @@ export class EnquiryUpdateComponent implements OnInit {
       );
     });
     this.id = this.route.snapshot.paramMap.get('id');
+    this.getEnqdetails();
   }
   public step = [
     {
@@ -88,6 +91,25 @@ export class EnquiryUpdateComponent implements OnInit {
         });
     }
   }
+
+  getEnqdetails(){
+    this.enquiryDetailsService.getEnquiryDetails(this.id).subscribe((res:any) => {
+      console.log(res);
+      if (this.enquiryUpdateForm.get('dealPosition')) {
+        console.log('dealPosition from API:', res[0]?.dealPositionID);
+        console.log('Probability from API:',res[0]?.probability)
+  
+        this.enquiryUpdateForm.patchValue({
+          poExpectedDate: new Date(res[0]?.poExpectedDate),
+          dealPosition: res[0]?.dealPosition,
+          probability: res[0]?.probability,
+          dealValue: res[0]?.dealValue,
+  
+        });
+  
+      }
+    });
+   }
 
   async handleUpdateEnquiryBody(formData: any, id: string | number) {
     console.log('formdata', formData);
