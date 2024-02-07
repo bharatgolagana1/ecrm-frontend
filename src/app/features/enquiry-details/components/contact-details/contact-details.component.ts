@@ -32,6 +32,18 @@ export class ContactDetailsComponent implements OnInit {
   public soldToSite: unknown = [];
   public regionsList: unknown = [];
   public soldToContactList:unknown = [];
+
+  public soldToSiteDefaultValue :{
+    contactID: unknown;
+    contactName: unknown;
+    comboType: string;
+    leSiteId: unknown;
+    siteName:unknown;
+    departmentName: unknown; 
+    isContactActive:boolean;
+    contactEmailID:unknown;
+    leDeptId: unknown
+  }| null = null;
   constructor(public enquiryDetailsService: EnquiryDetailsService) {
     this.soldToContact = this.soldToContact.slice();
   }
@@ -60,15 +72,35 @@ export class ContactDetailsComponent implements OnInit {
     if (contact && contact?.contactID) {
       this.enquiryDetailsService
         .getSoldToSiteList(contact.contactID)
-        .subscribe(res => {
-          this.soldToSite = res;
+        .subscribe((res: any) => {
+          this.soldToSite = res || '';
+  
+          if (res && res.length > 0) { 
+            this.soldToSiteDefaultValue = {
+              contactID: res[0]?.contactID,
+              contactName: res[0]?.contactName,
+              comboType: 'SOLDTOLESITE',
+              leSiteId: res[0]?.leSiteID,
+              siteName: res[0]?.lesiteName,
+              departmentName: res[0]?.departmentName,
+              isContactActive: true,
+              contactEmailID: res[0]?.contactEmailID,
+              leDeptId: res[0]?.leDeptId
+            };
+  
+            this.contactDetails.patchValue({
+              soldToSite: this.soldToSiteDefaultValue.leSiteId
+            });
+
+            this.handleSoldToSiteChanged(this.soldToSiteDefaultValue);
+          }
         });
     }
   }
-
-  handleSoldToSiteChanged(site: SoldToSite) {
+  
+  handleSoldToSiteChanged(site: any) { 
     this.enquiryDetailsService
-      .getRegionFromSiteList(site.leSiteID)
+      .getRegionFromSiteList(site.leSiteId) 
       .subscribe((res: any) => {
         this.regionsList = res || '';
         this.contactDetails.patchValue({
@@ -79,4 +111,6 @@ export class ContactDetailsComponent implements OnInit {
         this.enquiryDetailsService.leID = res[1]?.comboID;
       });
   }
+  
+
 }
