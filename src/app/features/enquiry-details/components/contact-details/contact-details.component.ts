@@ -34,15 +34,8 @@ export class ContactDetailsComponent implements OnInit {
   public soldToContactList:unknown = [];
 
   public soldToSiteDefaultValue :{
-    contactID: unknown;
-    contactName: unknown;
     comboType: string;
     leSiteId: unknown;
-    siteName:unknown;
-    departmentName: unknown; 
-    isContactActive:boolean;
-    contactEmailID:unknown;
-    leDeptId: unknown
   }| null = null;
   constructor(public enquiryDetailsService: EnquiryDetailsService) {
     this.soldToContact = this.soldToContact.slice();
@@ -77,15 +70,8 @@ export class ContactDetailsComponent implements OnInit {
   
           if (res && res.length > 0) { 
             this.soldToSiteDefaultValue = {
-              contactID: res[0]?.contactID,
-              contactName: res[0]?.contactName,
               comboType: 'SOLDTOLESITE',
               leSiteId: res[0]?.leSiteID,
-              siteName: res[0]?.lesiteName,
-              departmentName: res[0]?.departmentName,
-              isContactActive: true,
-              contactEmailID: res[0]?.contactEmailID,
-              leDeptId: res[0]?.leDeptId
             };
   
             this.contactDetails.patchValue({
