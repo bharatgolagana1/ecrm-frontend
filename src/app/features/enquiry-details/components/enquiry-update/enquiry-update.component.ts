@@ -82,6 +82,7 @@ export class EnquiryUpdateComponent implements OnInit {
     attachment: new FormControl([null], Validators.required),
   });
   public async updateEnquiryForm(): Promise<void> {
+    this.enquiryUpdateForm.markAllAsTouched();
     if (this.enquiryUpdateForm.valid) {
       this.loaderService.showLoader();
       const formData = new FormData();
